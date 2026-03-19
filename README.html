@@ -1,0 +1,232 @@
+# CLpage1[mota_detail_firstview_v5.html](https://github.com/user-attachments/files/26104967/mota_detail_firstview_v5.html)
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOTA 車両詳細 ファーストビュー v5（全要素）</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Yu Gothic',sans-serif;}
+body{background:#f5f5f3;padding:24px;}
+.ph{background:#eee;border:0.5px dashed #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#aaa;}
+.sl{font-size:11px;color:#999;}
+.sv{font-size:12px;color:#333;margin-top:1px;}
+.tag{font-size:10px;background:#f5f5f3;color:#666;border:0.5px solid #ccc;border-radius:3px;padding:2px 6px;}
+.thumb{background:#eee;border:0.5px solid #ddd;border-radius:3px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:9px;color:#aaa;transition:opacity .15s;}
+.thumb:hover{opacity:.7;}
+.sec{font-size:11px;font-weight:500;color:#888;margin-bottom:5px;padding-bottom:3px;border-bottom:0.5px solid #e5e5e5;}
+.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:100;align-items:center;justify-content:center;}
+.modal-ov.open{display:flex;}
+</style>
+</head>
+<body>
+
+<div style="max-width:1100px;margin:0 auto;">
+<div id="frame" style="background:#fff;border:0.5px solid #ddd;border-radius:8px;overflow:hidden;position:relative;">
+
+  <!-- modal -->
+  <div id="overlay" class="modal-ov">
+    <div style="background:#fff;border-radius:8px;padding:14px;max-width:400px;width:88%;position:relative;">
+      <div id="modal-label" style="font-size:11px;color:#999;margin-bottom:6px;"></div>
+      <div id="modal-img" class="ph" style="width:100%;height:220px;font-size:13px;border-radius:5px;"></div>
+      <div style="display:flex;justify-content:space-between;margin-top:8px;align-items:center;">
+        <button onclick="changePhoto(-1)" style="font-size:12px;padding:3px 10px;border:0.5px solid #ccc;border-radius:4px;background:transparent;color:#666;cursor:pointer;">◀</button>
+        <span id="modal-counter" style="font-size:11px;color:#999;"></span>
+        <button onclick="changePhoto(1)" style="font-size:12px;padding:3px 10px;border:0.5px solid #ccc;border-radius:4px;background:transparent;color:#666;cursor:pointer;">▶</button>
+      </div>
+      <button onclick="closeModal()" style="position:absolute;top:8px;right:10px;background:transparent;border:none;font-size:16px;color:#666;cursor:pointer;">×</button>
+    </div>
+  </div>
+
+  <!-- Topnav -->
+  <div style="background:#1a1a1a;padding:7px 20px;display:flex;align-items:center;gap:20px;">
+    <span style="color:#fff;font-size:12px;font-weight:500;">MOTA モータ</span>
+    <span style="font-size:11px;color:#aaa;">マイページ</span>
+    <span style="font-size:11px;color:#fff;border-bottom:1.5px solid #fff;padding-bottom:2px;">車買取</span>
+    <span style="font-size:11px;color:#aaa;">車買取Plus</span>
+    <div style="margin-left:auto;font-size:11px;color:#aaa;">ログアウト</div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div style="padding:6px 20px;border-bottom:0.5px solid #e5e5e5;display:flex;align-items:center;gap:8px;background:#f9f9f7;">
+    <span style="font-size:11px;color:#185FA5;">← 入札一覧に戻る</span>
+    <div style="margin-left:auto;display:flex;gap:12px;">
+      <span style="font-size:11px;color:#aaa;">◀ 前の車両</span>
+      <span style="font-size:11px;color:#aaa;">次の車両 ▶</span>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 236px;">
+
+    <!-- LEFT -->
+    <div style="padding:12px 18px;border-right:0.5px solid #e5e5e5;">
+
+      <!-- Title -->
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;gap:10px;">
+        <div>
+          <div style="font-size:14px;font-weight:500;color:#333;margin-bottom:3px;">レクサス CT200h バージョンL</div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;">
+            <span style="font-size:10px;background:#FCEBEB;color:#A32D2D;border-radius:3px;padding:1px 6px;">18時締切</span>
+            <span style="font-size:10px;background:#EAF3DE;color:#3B6D11;border-radius:3px;padding:1px 6px;">修復済</span>
+            <span style="font-size:10px;background:#f5f5f3;color:#666;border:0.5px solid #ccc;border-radius:3px;padding:1px 6px;">査定番号 2127615</span>
+            <span style="font-size:10px;background:#f5f5f3;color:#666;border:0.5px solid #ccc;border-radius:3px;padding:1px 6px;">車台番号 —</span>
+          </div>
+        </div>
+        <div style="font-size:10px;color:#aaa;white-space:nowrap;">査定日 2026/3/19</div>
+      </div>
+
+      <!-- Photos 6枚 -->
+      <div style="margin-bottom:10px;">
+        <div style="font-size:11px;color:#999;margin-bottom:3px;">写真（クリックで拡大）</div>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:3px;">
+          <div class="thumb" style="height:52px;" onclick="openModal(0)">外装1</div>
+          <div class="thumb" style="height:52px;" onclick="openModal(1)">外装2</div>
+          <div class="thumb" style="height:52px;" onclick="openModal(2)">内装1</div>
+          <div class="thumb" style="height:52px;" onclick="openModal(3)">内装2</div>
+          <div class="thumb" style="height:52px;" onclick="openModal(4)">エンジン</div>
+          <div class="thumb" style="height:52px;" onclick="openModal(5)">その他</div>
+        </div>
+      </div>
+
+      <!-- 基本情報 -->
+      <div style="margin-bottom:10px;">
+        <div class="sec">基本情報</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;">
+          <div><div class="sl">車種</div><div class="sv">レクサスCT200h バージョンL</div></div>
+          <div><div class="sl">エリア</div><div class="sv">北海道厚岸郡厚岸町</div></div>
+          <div><div class="sl">査定番号</div><div class="sv">2127615</div></div>
+          <div><div class="sl">型式</div><div class="sv">DAA-ZWA10</div></div>
+          <div><div class="sl">車台番号</div><div class="sv">—</div></div>
+          <div><div class="sl">排気量</div><div class="sv">1,797cc</div></div>
+          <div><div class="sl">走行距離</div><div class="sv">〜5,000km</div></div>
+          <div><div class="sl">年式</div><div class="sv">令和2年式</div></div>
+          <div><div class="sl">修復歴</div><div class="sv" style="color:#A32D2D;">修復済</div></div>
+          <div><div class="sl">車体色</div><div class="sv">銀（シルバー）系</div></div>
+          <div><div class="sl">車検期限</div><div class="sv">未入力</div></div>
+          <div><div class="sl">燃料</div><div class="sv">その他</div></div>
+          <div><div class="sl">ミッション</div><div class="sv">CVT</div></div>
+          <div><div class="sl">乗車定員</div><div class="sv">5名</div></div>
+          <div><div class="sl">ドア枚数</div><div class="sv">5枚</div></div>
+          <div><div class="sl">ローン残債</div><div class="sv">—</div></div>
+          <div><div class="sl">ハンドル</div><div class="sv">右</div></div>
+          <div><div class="sl">電動スライドドア</div><div class="sv">—</div></div>
+          <div><div class="sl">カーナビ</div><div class="sv">—</div></div>
+        </div>
+      </div>
+
+      <!-- その他 -->
+      <div style="margin-bottom:10px;">
+        <div class="sec">その他</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;">
+          <div><div class="sl">売却希望時期</div><div class="sv">3ヶ月以内</div></div>
+          <div><div class="sl">乗り換え検討</div><div class="sv">—</div></div>
+        </div>
+      </div>
+
+      <!-- PRコメント -->
+      <div style="margin-bottom:10px;">
+        <div class="sec">PRコメント</div>
+        <div style="font-size:12px;color:#aaa;">（未入力）</div>
+      </div>
+
+      <!-- 装備情報 -->
+      <div style="margin-bottom:10px;">
+        <div class="sec">装備情報</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;">
+          <span class="tag">禁煙車</span>
+          <span class="tag">サンルーフ</span>
+          <span class="tag">傷・へこみあり</span>
+          <span class="tag">ペット乗車実績あり</span>
+          <span class="tag">全周囲モニター</span>
+          <span class="tag">純正オプションサウンドシステム</span>
+          <span class="tag">純正後席モニター</span>
+          <span class="tag">純正フルエアロ</span>
+          <span class="tag">レザーシート</span>
+          <span class="tag">ワンオーナー</span>
+          <span class="tag">新車時の保証書・取扱説明書あり</span>
+        </div>
+      </div>
+
+      <!-- フリーメモ -->
+      <div>
+        <div style="font-size:11px;color:#999;margin-bottom:3px;">フリーメモ（社内用・ユーザー非表示）</div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <input type="text" placeholder="300文字以内" style="flex:1;font-size:12px;padding:5px 8px;border:0.5px solid #ddd;border-radius:4px;" />
+          <span style="font-size:11px;color:#185FA5;cursor:pointer;white-space:nowrap;">更新</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div style="padding:10px;display:flex;flex-direction:column;gap:7px;background:#f9f9f7;">
+
+      <!-- 入札フォーム -->
+      <div style="background:#fff;border:0.5px solid #ddd;border-radius:6px;padding:10px;">
+        <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:7px;">入札フォーム</div>
+
+        <div style="font-size:11px;color:#999;margin-bottom:2px;">下限金額</div>
+        <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+          <input type="text" style="flex:1;min-width:0;font-size:12px;padding:4px 6px;border:0.5px solid #ccc;border-radius:4px;" />
+          <span style="font-size:11px;color:#aaa;">円</span>
+        </div>
+
+        <div style="font-size:11px;color:#999;margin-bottom:2px;">上限金額</div>
+        <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+          <input type="text" style="flex:1;min-width:0;font-size:12px;padding:4px 6px;border:0.5px solid #ccc;border-radius:4px;" />
+          <span style="font-size:11px;color:#aaa;">円</span>
+        </div>
+
+        <div style="font-size:11px;color:#999;margin-bottom:2px;">メッセージ（任意）</div>
+        <textarea placeholder="400文字以内" style="width:100%;font-size:11px;padding:4px 6px;border:0.5px solid #ddd;border-radius:4px;resize:none;height:44px;margin-bottom:6px;"></textarea>
+
+        <div style="font-size:10px;color:#aaa;margin-bottom:5px;">他に <span style="font-weight:500;color:#333;">0社</span> が入札　2026/3/19 18:00締切</div>
+
+        <button style="width:100%;padding:9px;background:#E24B4A;color:#fff;border:none;border-radius:5px;font-size:13px;font-weight:500;cursor:pointer;">入札する</button>
+
+        <div style="font-size:10px;color:#aaa;margin-top:6px;line-height:1.5;">入札受付期間中であれば、入札額は何度でも変更可能です。入札申込期限を過ぎると、出品者に入札は開示されません。</div>
+      </div>
+
+      <!-- 入札見送り -->
+      <div style="background:#fff;border:0.5px solid #ddd;border-radius:5px;padding:8px 10px;">
+        <div style="font-size:11px;color:#666;margin-bottom:2px;">入札見送り設定</div>
+        <div style="font-size:10px;color:#aaa;margin-bottom:5px;">この車両の入札を行わない場合は、入札見送りを設定してください。</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:11px;color:#666;">入札見送り</span>
+          <div style="width:32px;height:18px;background:#ccc;border-radius:9px;position:relative;">
+            <div style="width:14px;height:14px;background:#fff;border-radius:50%;position:absolute;top:2px;left:2px;border:0.5px solid #ddd;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 入札制限 -->
+      <div style="border:0.5px solid #e5e5e5;border-radius:5px;overflow:hidden;">
+        <div style="padding:4px 8px;background:#f5f5f3;font-size:10px;font-weight:500;color:#888;">入札のご注意（上限基準）</div>
+        <div style="font-size:10px;background:#fff;">
+          <div style="display:grid;grid-template-columns:1fr auto;padding:3px 8px;border-top:0.5px solid #e5e5e5;gap:4px;"><span style="color:#aaa;">〜49万9千円</span><span style="color:#333;">20万幅</span></div>
+          <div style="display:grid;grid-template-columns:1fr auto;padding:3px 8px;border-top:0.5px solid #e5e5e5;gap:4px;"><span style="color:#aaa;">50〜99万9千円</span><span style="color:#333;">30万幅</span></div>
+          <div style="display:grid;grid-template-columns:1fr auto;padding:3px 8px;border-top:0.5px solid #e5e5e5;gap:4px;"><span style="color:#aaa;">100〜199万9千円</span><span style="color:#333;">40万幅</span></div>
+          <div style="display:grid;grid-template-columns:1fr auto;padding:3px 8px;border-top:0.5px solid #e5e5e5;gap:4px;"><span style="color:#aaa;">200〜299万9千円</span><span style="color:#333;">50万幅</span></div>
+          <div style="display:grid;grid-template-columns:1fr auto;padding:3px 8px;border-top:0.5px solid #e5e5e5;gap:4px;"><span style="color:#aaa;">300〜499万9千円</span><span style="color:#333;">100万幅</span></div>
+          <div style="display:grid;grid-template-columns:1fr auto;padding:3px 8px;border-top:0.5px solid #e5e5e5;gap:4px;"><span style="color:#aaa;">500万円〜</span><span style="color:#333;">150万幅</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+const photos=['外装1','外装2','内装1','内装2','エンジン','その他'];
+let cur=0;
+function openModal(i){cur=i;updateModal();document.getElementById('overlay').classList.add('open');}
+function closeModal(){document.getElementById('overlay').classList.remove('open');}
+function changePhoto(d){cur=(cur+d+photos.length)%photos.length;updateModal();}
+function updateModal(){
+  document.getElementById('modal-img').textContent=photos[cur];
+  document.getElementById('modal-label').textContent=photos[cur];
+  document.getElementById('modal-counter').textContent=(cur+1)+' / '+photos.length;
+}
+</script>
+</body>
+</html>
